@@ -1,4 +1,8 @@
 # Litask — The Local-First Task Mission Control
+![](images/page1.png)
+
+Based on the same solarised theme, modern look ,and max productivity concepts of my [Codetrest — Your Ultimate Markdown-Powered Notes Hub](https://github.com/neptotech/codetrest)  project. Aiming to give modern software at native speed.
+
 Litask turns Tauri into a lightweight productivity cockpit. The desktop shell wraps a React + Tailwind UI that focuses on:
 
 - **Projects overview** – snapshot every initiative with health, owners, and quick stats.
@@ -9,7 +13,12 @@ Litask turns Tauri into a lightweight productivity cockpit. The desktop shell wr
 Built on a modern React stack (Vite, TypeScript, TanStack Query, shadcn/ui) but delivered as a native-feeling desktop app.
 
 ---
-## Installation & Setup
+## Install as a user  
+
+- Download portable or installer for the project and run from [release page](https://github.com/neptotech/litask/releases) 
+
+---
+## Installation & Setup (For developers)
 
 1. **Install [Node.js](https://nodejs.org/)** for the frontend workspace.
 2. **Install [Rust](https://www.rust-lang.org/tools/install)** for the Tauri shell.
@@ -23,25 +32,25 @@ Built on a modern React stack (Vite, TypeScript, TanStack Query, shadcn/ui) but 
 
 ### Development
 ```bash
-npm run dev        # Launches the Litask Vite dev server on 1420
 npm run tauri dev  # Boots the desktop shell and proxies to the dev server
 ```
 
 ### Production build
 ```bash
-npm run build       # Emits the Litask web bundle to src/dist
 npm run tauri build # Packages the desktop app (runs npm run build first)
 ```
 
 ---
 ## Feature Highlights
-
+- **Store tasks safely to documents** - Stored in `~/Documents/Litask Data.json`. Which is most likely backed up by onedrive aldready! So you get your content saved to cloud additionally as backup!
 - **Commanding navigation** – Palette, sidebar filters, and keyboard shortcuts accelerate project hops.
 - **Flexible dialogs** – Create/update tasks with validation (React Hook Form + Zod) and contextual metadata pickers.
 - **Visual analytics** – Recharts-powered workload and progress charts plus status badges for quick scanning.
 - **First-class theming** – Light/dark/system themes, Radix UI components, and tailwind-merge utility classes keep styling consistent.
 - **Desktop superpowers** – File system plugin and local document storage keep work accessible even without a network.
 
+![](images/page2.png)
+![](images/page3.png)
 ---
 ## Data Persistence
 

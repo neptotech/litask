@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Tauri: Dev",
+      "type": "shell",
+      "command": "cargo tauri dev",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Tauri: Build",
+      "type": "shell",
+      "command": "cargo tauri build",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Tauri: Build (32-bit)",
+      "type": "shell",
+      "command": "cargo tauri build --target i686-pc-windows-msvc",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Web: Dev (Vite)",
+      "type": "shell",
+      "command": "npm run dev",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Web: Build (Vite)",
+      "type": "shell",
+      "command": "npm run build",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

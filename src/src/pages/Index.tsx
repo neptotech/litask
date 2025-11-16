@@ -25,6 +25,7 @@ import { Task } from "@/types/todo";
 import { ViewMode } from "@/types/view";
 import { cn } from "@/lib/utils";
 import { ProjectsOverview } from "@/components/ProjectsOverview";
+import { MadeByBadge } from "@/components/MadeByBadge";
 
 const getProjectKey = (projectId?: string | null) => projectId ?? null;
 
@@ -317,6 +318,7 @@ function TodoApp() {
         onOpenChange={handleDialogClose}
         task={editingTask}
       />
+      <MadeByBadge />
     </div>
   );
 }
