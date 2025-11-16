@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Solarized Light Base Colors */
+    --background: 44 87% 94%;  /* #fdf6e3 - base3 */
+    --foreground: 192 15% 47%;  /* #657b83 - base00 */
+
+    --card: 44 87% 94%;
+    --card-foreground: 192 15% 47%;
+
+    --popover: 45 100% 96%;  /* #eee8d5 - base2 */
+    --popover-foreground: 192 15% 47%;
+
+    /* Solarized Blue as primary */
+    --primary: 205 69% 49%;  /* #268bd2 */
+    --primary-foreground: 44 87% 94%;
+
+    /* Solarized Cyan as secondary */
+    --secondary: 175 59% 40%;  /* #2aa198 */
+    --secondary-foreground: 44 87% 94%;
+
+    --muted: 45 100% 96%;  /* #eee8d5 - base2 */
+    --muted-foreground: 194 14% 40%;  /* #586e75 - base01 */
+
+    /* Solarized Green as accent */
+    --accent: 68 100% 30%;  /* #859900 */
+    --accent-foreground: 44 87% 94%;
+
+    /* Solarized Red for destructive */
+    --destructive: 1 79% 52%;  /* #dc322f */
+    --destructive-foreground: 44 87% 94%;
+
+    --border: 45 52% 86%;  /* lighter version of base2 */
+    --input: 45 52% 86%;
+    --ring: 205 69% 49%;
+
+    --radius: 0.5rem;
+
+    /* Priority Colors - Solarized Palette */
+    --priority-low: 68 100% 30%;  /* green #859900 */
+    --priority-medium: 45 100% 51%;  /* yellow #b58900 */
+    --priority-high: 1 79% 52%;  /* red #dc322f */
+
+    /* Additional Solarized Colors */
+    --solarized-orange: 18 89% 48%;  /* #cb4b16 */
+    --solarized-violet: 237 45% 60%;  /* #6c71c4 */
+    --solarized-magenta: 331 64% 52%;  /* #d33682 */
+    --solarized-cyan: 175 59% 40%;  /* #2aa198 */
+
+    --sidebar-background: 45 100% 96%;
+    --sidebar-foreground: 192 15% 47%;
+    --sidebar-primary: 205 69% 49%;
+    --sidebar-primary-foreground: 44 87% 94%;
+    --sidebar-accent: 44 87% 94%;
+    --sidebar-accent-foreground: 192 15% 47%;
+    --sidebar-border: 45 52% 86%;
+    --sidebar-ring: 205 69% 49%;
+  }
+
+  .dark {
+    /* Solarized Dark Base Colors */
+    --background: 192 100% 11%;  /* #002b36 - base03 */
+    --foreground: 186 8% 60%;  /* #93a1a1 - base1 */
+
+    --card: 193 100% 12%;  /* #073642 - base02 */
+    --card-foreground: 186 8% 60%;
+
+    --popover: 193 100% 12%;
+    --popover-foreground: 186 8% 60%;
+
+    --primary: 205 69% 49%;  /* #268bd2 */
+    --primary-foreground: 44 87% 94%;
+
+    --secondary: 175 59% 40%;  /* #2aa198 */
+    --secondary-foreground: 44 87% 94%;
+
+    --muted: 193 100% 12%;
+    --muted-foreground: 194 14% 40%;  /* #586e75 */
+
+    --accent: 68 100% 30%;  /* #859900 */
+    --accent-foreground: 44 87% 94%;
+
+    --destructive: 1 79% 52%;
+    --destructive-foreground: 44 87% 94%;
+
+    --border: 192 40% 20%;
+    --input: 192 40% 20%;
+    --ring: 205 69% 49%;
+
+    --priority-low: 68 100% 30%;
+    --priority-medium: 45 100% 51%;
+    --priority-high: 1 79% 52%;
+
+    --solarized-orange: 18 89% 48%;
+    --solarized-violet: 237 45% 60%;
+    --solarized-magenta: 331 64% 52%;
+    --solarized-cyan: 175 59% 40%;
+
+    --sidebar-background: 193 100% 12%;
+    --sidebar-foreground: 186 8% 60%;
+    --sidebar-primary: 205 69% 49%;
+    --sidebar-primary-foreground: 44 87% 94%;
+    --sidebar-accent: 192 100% 11%;
+    --sidebar-accent-foreground: 186 8% 60%;
+    --sidebar-border: 192 40% 20%;
+    --sidebar-ring: 205 69% 49%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .project-dot-primary {
+    background-color: hsl(var(--primary));
+  }
+  .project-dot-secondary {
+    background-color: hsl(var(--secondary));
+  }
+  .project-dot-solarized-orange {
+    background-color: hsl(var(--solarized-orange));
+  }
+  .project-dot-solarized-violet {
+    background-color: hsl(var(--solarized-violet));
+  }
+  .project-dot-solarized-magenta {
+    background-color: hsl(var(--solarized-magenta));
+  }
+}

@@ -1,0 +1,12 @@
+node_modules
+.vscode/
+
+.release/*
+node_modules/*
+tests/
+dist/
+src/dist/
+src/node_modules/
+src/package-lock.json
+src-tauri/target/
+out/

@@ -1,0 +1,20 @@
+{
+  "name": "litask",
+  "private": true,
+  "version": "2.2.0",
+  "type": "module",
+  "workspaces": [
+    "src"
+  ],
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "npm run dev --workspace src",
+    "build": "npm run build --workspace src",
+    "build:dev": "npm run build:dev --workspace src",
+    "preview": "npm run preview --workspace src",
+    "lint": "npm run lint --workspace src"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}
