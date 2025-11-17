@@ -244,7 +244,7 @@ function TodoApp() {
           </div>
         </header>
 
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-hidden min-h-0">
           {viewMode === "projects" ? (
             <ScrollArea className="h-full">
               <ProjectsOverview
@@ -273,7 +273,7 @@ function TodoApp() {
               </DndContext>
             </div>
           ) : (
-            <ScrollArea className="flex-1">
+            <ScrollArea className="h-full">
               <div className="p-6 space-y-3">
                 {displayTasks.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center">

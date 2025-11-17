@@ -29,6 +29,7 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
 
+import { ScrollArea } from "@/components/ui/scroll-area";
 type TaskDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -39,6 +40,7 @@ export function TaskDialog({ open, onOpenChange, task }: TaskDialogProps) {
   const { addTask, updateTask, moveTaskToProject, projects } = useTodo();
 
   const NO_PROJECT_VALUE = "__no_project__";
+  const showProjectSelect = projects.length > 0;
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -147,35 +149,38 @@ export function TaskDialog({ open, onOpenChange, task }: TaskDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px]">
-        <DialogHeader>
+      <DialogContent className="sm:max-w-[700px] max-h-[90vh] flex-col">
+        <ScrollArea className=" max-h-[80vh] min-h-0 overflow-y-auto flex ">
+        <DialogHeader className="px-6 pt-6">
           <DialogTitle>{task ? "Edit Task" : "New Task"}</DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="title">Title</Label>
-            <Input
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="Task title"
-              autoFocus
-            />
-          </div>
+        <div className="flex-1 h-full min-h-0 px-6 pb-6">
+          
+          <form onSubmit={handleSubmit} className="space-y-6 pb-2">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2 md:col-span-2">
+              <Label htmlFor="title">Title</Label>
+              <Input
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Task title"
+                autoFocus
+              />
+            </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
-            <Textarea
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Add details..."
-              rows={3}
-            />
-          </div>
+            <div className="space-y-2 md:col-span-2">
+              <Label htmlFor="description">Description</Label>
+              <Textarea
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Add details..."
+                rows={3}
+              />
+            </div>
 
-          <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="priority">Priority</Label>
               <Select value={priority} onValueChange={(v) => setPriority(v as Priority)}>
@@ -229,79 +234,79 @@ export function TaskDialog({ open, onOpenChange, task }: TaskDialogProps) {
                 </PopoverContent>
               </Popover>
             </div>
-          </div>
 
-          {projects.length > 0 && (
-            <div className="space-y-2">
-              <Label htmlFor="project">Project</Label>
-              <Select value={projectSelection} onValueChange={setProjectSelection}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select project" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value={NO_PROJECT_VALUE}>No project</SelectItem>
-                  {projects.map((project) => (
-                    <SelectItem key={project.id} value={project.id}>
-                      <div className="flex items-center gap-2">
-                        {project.name}
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+            {showProjectSelect && (
+              <div className="space-y-2">
+                <Label htmlFor="project">Project</Label>
+                <Select value={projectSelection} onValueChange={setProjectSelection}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select project" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={NO_PROJECT_VALUE}>No project</SelectItem>
+                    {projects.map((project) => (
+                      <SelectItem key={project.id} value={project.id}>
+                        <div className="flex items-center gap-2">
+                          {project.name}
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
+            <div className={cn("space-y-2", !showProjectSelect && "md:col-span-2")}>
+              <Label htmlFor="tags">Tags</Label>
+              <Input
+                id="tags"
+                value={tags}
+                onChange={(e) => setTags(e.target.value)}
+                placeholder="work, urgent, etc. (comma separated)"
+              />
             </div>
-          )}
 
-          <div className="space-y-2">
-            <Label htmlFor="tags">Tags</Label>
-            <Input
-              id="tags"
-              value={tags}
-              onChange={(e) => setTags(e.target.value)}
-              placeholder="work, urgent, etc. (comma separated)"
-            />
-          </div>
+            <div className="space-y-2 md:col-span-2">
+              <Label>Subtasks</Label>
+              <div className="space-y-2">
+                {subtasks.map((subtask) => (
+                  <div key={subtask.id} className="flex items-center gap-2">
+                    <Checkbox
+                      checked={subtask.completed}
+                      onCheckedChange={(checked) =>
+                        handleSubtaskToggle(subtask.id, Boolean(checked))
+                      }
+                      className="mt-0.5"
+                    />
+                    <Input
+                      value={subtask.title}
+                      onChange={(e) =>
+                        handleSubtaskTitleChange(subtask.id, e.target.value)
+                      }
+                      placeholder="Subtask title"
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => handleRemoveSubtask(subtask.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                ))}
 
-          <div className="space-y-2">
-            <Label>Subtasks</Label>
-            <div className="space-y-2">
-              {subtasks.map((subtask) => (
-                <div key={subtask.id} className="flex items-center gap-2">
-                  <Checkbox
-                    checked={subtask.completed}
-                    onCheckedChange={(checked) =>
-                      handleSubtaskToggle(subtask.id, Boolean(checked))
-                    }
-                    className="mt-0.5"
-                  />
-                  <Input
-                    value={subtask.title}
-                    onChange={(e) =>
-                      handleSubtaskTitleChange(subtask.id, e.target.value)
-                    }
-                    placeholder="Subtask title"
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleRemoveSubtask(subtask.id)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              ))}
-
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                className="w-full border-dashed"
-                onClick={handleAddSubtask}
-              >
-                <Plus className="mr-2 h-4 w-4" />
-                Add subtask
-              </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="w-full border-dashed"
+                  onClick={handleAddSubtask}
+                >
+                  <Plus className="mr-2 h-4 w-4" />
+                  Add subtask
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -315,7 +320,10 @@ export function TaskDialog({ open, onOpenChange, task }: TaskDialogProps) {
             </Button>
             <Button type="submit">{task ? "Save" : "Add Task"}</Button>
           </div>
-        </form>
+          </form>
+          
+        </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );
