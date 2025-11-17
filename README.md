@@ -3,6 +3,8 @@
 
 Based on the same solarised theme, modern look ,and max productivity concepts of my [Codetrest — Your Ultimate Markdown-Powered Notes Hub](https://github.com/neptotech/codetrest)  project. Aiming to give modern software at native speed.
 
+Not bragging but with tauri-rust power the overall app is just 10mb and the installers are just 3mb as opposed to the 150mb you would have expected for a web framework based desktop app embedding full chromium. Tauri uses native windows/os web viewer.
+
 Litask turns Tauri into a lightweight productivity cockpit. The desktop shell wraps a React + Tailwind UI that focuses on:
 
 - **Projects overview** – snapshot every initiative with health, owners, and quick stats.
