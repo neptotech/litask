@@ -150,7 +150,7 @@ export function TaskDialog({ open, onOpenChange, task }: TaskDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[700px] max-h-[90vh] flex-col">
-        <ScrollArea className=" max-h-[80vh] min-h-0 overflow-y-auto flex ">
+        <ScrollArea className=" max-h-[80vh] min-h-0 overflow-y-hidden flex ">
         <DialogHeader className="px-6 pt-6">
           <DialogTitle>{task ? "Edit Task" : "New Task"}</DialogTitle>
         </DialogHeader>
